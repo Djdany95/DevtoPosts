@@ -22,6 +22,22 @@ def checkLastPost(user):
     return last_post
 
 
+def getNTotalPosts(user):
+    """"""
+    user_url = url + '/' + user
+    web = urllib.request.urlopen(user_url)
+
+    soup = BeautifulSoup(web, 'html.parser')
+
+    # Get the text inside the first div in sidebar-data,
+    # trim it, split it based on spaces and get the first element,
+    # which is the number of posts
+    total_posts = soup.find(
+        'div', attrs={'class': 'sidebar-data'}).find('div').text.strip().split(' ')[0]
+
+    return total_posts
+
+
 def infiniteScroll(user):
     """"""
     user_url = url + '/' + user
@@ -54,7 +70,7 @@ def infiniteScroll(user):
     return source_data
 
 
-def getPosts(user):
+def getAllPosts(user):
     """"""
     web = infiniteScroll(user)
 
