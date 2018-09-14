@@ -113,14 +113,15 @@ def getLastPosts(user):
     posts_urls = list(map(lambda x: url+x['href'], posts_a))
 
     nPosts = list(range(len(posts_names), 0, -1))
+    totalPosts = getNTotalPosts(user)
 
-    response = create_json(nPosts, posts_names, posts_urls)
+    response = create_json(totalPosts, nPosts, posts_names, posts_urls)
 
     return response
 
 
-def create_json(nPosts, posts, urls):
+def create_json(totalPosts, nPosts, posts, urls):
     """"""
-    json_posts = [{'id': nPost, 'post': post, 'url': url}
-                  for nPost, post, url in zip(nPosts, posts, urls)]
+    json_posts = {'total': totalPosts, 'posts': [{'id': nPost, 'post': post, 'url': url}
+                                                 for nPost, post, url in zip(nPosts, posts, urls)]}
     return json.dumps(json_posts)
