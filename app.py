@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask
 from flask_restful import Resource, Api
 import json
 import dev_posts
