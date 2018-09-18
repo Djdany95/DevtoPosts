@@ -7,12 +7,14 @@ app = Flask(__name__)
 api = Api(app)
 
 
+############# See Readme.md to use this ######################
 # @app.route('/getallposts', methods=['GET'])
 # class GetAllPosts(Resource):
 #     def get(self, user):
 #         json_data = dev_posts.getAllPosts(user)
 #         data = json.loads(json_data)
 #         return data
+##############################################################
 
 
 @app.route('/getlastposts', methods=['GET'])
@@ -42,7 +44,8 @@ def get():
     return """<p>Get more info in my github <a href="https://github.com/djdany01/DevtoPosts">DevtoPosts</a></p>"""
 
 
-# api.add_resource(GetAllPosts, '/getallposts/<user>') --> Can't use it in heroku, but functions perfect locally.
+### Can't use it in heroku because uses selenium with chromedriver, but functions perfect locally. See Readme.md to use it.
+# api.add_resource(GetAllPosts, '/getallposts/<user>')
 api.add_resource(GetLastPosts, '/getlastposts/<user>')
 api.add_resource(CheckLastPost, '/checklastpost/<user>')
 api.add_resource(GetNTotalPosts, '/getntotalposts/<user>')
